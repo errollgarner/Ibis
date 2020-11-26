@@ -33,6 +33,7 @@ class View;
 class USAcquisitionObject;
 class GlobalEventHandler;
 class IbisPreferences;
+class igtlioCommand;
 
 class vtkMatrix4x4;
 
@@ -379,6 +380,7 @@ public slots:
     void CursorPositionChangedSlot();
     void NavigationPointerChangedSlot();
     void IbisClockTickSlot();
+    void NewCommandReceivedSlot( igtlioCommand * command );
 
 signals:
 
@@ -389,6 +391,7 @@ signals:
     void CursorPositionChanged();
     void NavigationPointerChanged();
     void IbisClockTick();
+    void NewCommandReceived( igtlioCommand * );
 
 private:
     Application * m_application;

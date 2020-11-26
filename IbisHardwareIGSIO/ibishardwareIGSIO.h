@@ -11,7 +11,10 @@ See Copyright.txt or http://ibisneuronav.org/Copyright.html for details.
 #ifndef IBISHARDWAREIGSIO_H
 #define IBISHARDWAREIGSIO_H
 
+#include <igtlioConnector.h>
 #include <igtlioDevice.h>
+
+#include <vtkImageFlip.h>
 
 #include "configio.h"
 #include "hardwaremodule.h"
@@ -90,13 +93,18 @@ private slots:
     void OnDeviceNew( vtkObject *, unsigned long, void *, void * );
     void OnDeviceRemoved( vtkObject *, unsigned long, void *, void * );
     void OnConnectionEstablished( vtkObject *, unsigned long, void *, void * );
+    void OnCommandReceived( vtkObject *, unsigned long, void *, void * );
+
+signals:
+    void NewCommandReceived( igtlioCommand * command );
 
 protected:
     virtual void InitPlugin() override;
 
     // Launch a Plus server and connect
     bool LaunchLocalServer( QString plusConfigFile );
-    void Connect( std::string ip, int port, bool start );
+    void Connect( std::string ip, int port, bool start, std::string type, std::string protocol, std::string serverName,
+                  std::string deviceType );
     void DisconnectAllServers();
     void ShutDownLocalServers();
 
@@ -111,6 +119,8 @@ protected:
         vtkSmartPointer<PolyDataObject> toolModel;
         igtlioDevicePointer transformDevice;
         igtlioDevicePointer imageDevice;
+        bool flipYAxis;
+        vtkSmartPointer<vtkImageFlip> flipYFilter;
 
         // timestamps used to compute tool status when not in Metadata
         double lastTimeStamp;              // The timestamp of the last message we received

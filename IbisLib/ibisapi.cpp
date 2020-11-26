@@ -29,6 +29,10 @@ See Copyright.txt or http://ibisneuronav.org/Copyright.html for details.
 #include "usprobeobject.h"
 #include "view.h"
 
+#ifdef BUILT_WITH_HARDWARE_MODULE
+    #include <igtlioConnector.h>
+#endif
+
 const int IbisAPI::InvalidId = SceneManager::InvalidId;
 
 IbisAPI::IbisAPI( Application * app ) { this->SetApplication( app ); }
@@ -198,6 +202,8 @@ void IbisAPI::CursorPositionChangedSlot() { emit CursorPositionChanged(); }
 void IbisAPI::NavigationPointerChangedSlot() { emit NavigationPointerChanged(); }
 
 void IbisAPI::IbisClockTickSlot() { emit IbisClockTick(); }
+
+void IbisAPI::NewCommandReceivedSlot( igtlioCommand * c ) { emit NewCommandReceived( c ); }
 
 // from Application
 QProgressDialog * IbisAPI::StartProgress( int max, const QString & caption )

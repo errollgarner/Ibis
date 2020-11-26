@@ -95,7 +95,7 @@ endif()
 #==================================================================
 # Create options to build or not the different dependent projects.
 #==================================================================
-option( IBIS_BUILD_DEFAULT_HARDWARE_MODULE "Build hardware module based on OpenIGTLink and dependencies (OpenIGTLink and OpenIGTLinkIO)" ON )
+option( IBIS_BUILD_HARDWARE_MODULE "Build hardware module based on OpenIGTLink and dependencies (OpenIGTLink and OpenIGTLinkIO)" ON )
 option( IBIS_BUILD_ALL_PLUGINS "Build every plugin contained in the IbisPlugins and Extra directories" OFF )
 
 find_package ( OpenCL QUIET )
@@ -130,8 +130,11 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/version.h.in ${CMAKE_CURRENT_BINARY_
 
 add_subdirectory( IbisLib )
 set( HardwareModulesLibs "" )
-if( IBIS_BUILD_DEFAULT_HARDWARE_MODULE )
+if( IBIS_BUILD_HARDWARE_MODULE )
     add_subdirectory( IbisHardwareIGSIO )
+    message(STATUS "BUILDING HARDWARE MODULE")
+    find_package( OpenIGTLinkIO REQUIRED PATHS ${AutoIgtlIOPath} )
+    add_definitions( -DBUILT_WITH_HARDWARE_MODULE )
 endif()
 add_subdirectory( IbisPlugins )
 add_subdirectory( Ibis )
