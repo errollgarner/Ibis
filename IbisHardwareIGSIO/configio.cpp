@@ -21,6 +21,9 @@ void ServerConfig::Serialize( Serializer * ser )
 {
     ::Serialize( ser, "ServerName", m_serverName );
     ::Serialize( ser, "IPAddress", m_ipAddress );
+    ::Serialize( ser, "Type", m_type );
+    ::Serialize( ser, "Protocol", m_protocol );
+    ::Serialize( ser, "DeviceType", m_deviceType );
     ::Serialize( ser, "Port", m_port );
     ::Serialize( ser, "StartAuto", m_startAuto );
     ::Serialize( ser, "ConnectAuto", m_connectAuto );
@@ -33,6 +36,7 @@ void ToolConfig::Serialize( Serializer * ser )
     ::Serialize( ser, "ToolType", ToolType );
     ::Serialize( ser, "ToolModelFile", ToolModelFile );
     ::Serialize( ser, "ToolParamFile", ToolParamFile );
+    ::Serialize( ser, "FlipYAxis", FlipYAxis );
 }
 
 void DeviceToolAssociation::Serialize( Serializer * ser )
@@ -62,6 +66,24 @@ std::string ConfigIO::GetServerIPAddress( int index )
 {
     Q_ASSERT( index >= 0 && index < m_servers.size() );
     return m_servers[index].m_ipAddress;
+}
+
+std::string ConfigIO::GetServerType( int index )
+{
+    Q_ASSERT( index >= 0 && index < m_servers.size() );
+    return m_servers[index].m_type;
+}
+
+std::string ConfigIO::GetProtocol( int index )
+{
+    Q_ASSERT( index >= 0 && index < m_servers.size() );
+    return m_servers[index].m_protocol;
+}
+
+std::string ConfigIO::GetDeviceType( int index )
+{
+    Q_ASSERT( index >= 0 && index < m_servers.size() );
+    return m_servers[index].m_deviceType;
 }
 
 int ConfigIO::GetServerPort( int index )
@@ -110,6 +132,12 @@ QString ConfigIO::GetToolParamFile( int index )
 {
     Q_ASSERT( index >= 0 && index < m_tools.size() );
     return m_tools[index].ToolParamFile;
+}
+
+bool ConfigIO::GetFlipYAxis( int index )
+{
+    Q_ASSERT( index >= 0 && index < m_tools.size() );
+    return m_tools[index].FlipYAxis;
 }
 
 DeviceToolMap ConfigIO::GetAssociations()

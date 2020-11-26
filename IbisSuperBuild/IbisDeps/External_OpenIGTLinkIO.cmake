@@ -5,9 +5,9 @@ ExternalProject_Add( ${openigtlinkio_name}
   BINARY_DIR ${openigtlinkio_prefix}/build
   STAMP_DIR ${openigtlinkio_prefix}/stamp
   INSTALL_COMMAND ""
-  GIT_REPOSITORY "https://github.com/IGSIO/OpenIGTLinkIO.git"
+  GIT_REPOSITORY "https://github.com/IbisNeuronav/OpenIGTLinkIO.git"
   #the tag is used to mark the version that compiles and links with the first version of ibis 4.x, it will have to be removed altogether once OpenIGTLinkIO is stable
-  GIT_TAG  46975d197796063b956573f1b1022ac2e3643fe4
+  GIT_TAG  136d0113e5bae61c988b32afce9b8eacbcc983a9
   CMAKE_ARGS -DCMAKE_OSX_SYSROOT:PATH=${CMAKE_OSX_SYSROOT}
              -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=${CMAKE_OSX_DEPLOYMENT_TARGET}
              -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
