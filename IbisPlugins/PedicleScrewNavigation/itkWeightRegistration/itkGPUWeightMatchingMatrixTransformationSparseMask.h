@@ -10,8 +10,8 @@ See Copyright.txt or http://ibisneuronav.org/Copyright.html for details.
 =========================================================================*/
 // by Houssem Gueziri, from itkGPUOrientationMatchingMatrixTransformationSparseMask.h
 
-#ifndef __itkGPUWeightMatchingMatrixTransformationSparseMask_h__
-#define __itkGPUWeightMatchingMatrixTransformationSparseMask_h__
+#ifndef ITKGPUWEIGHTMATCHINGMATRIXTRANSFORMATIONSPARSEMASK_H_
+#define ITKGPUWEIGHTMATCHINGMATRIXTRANSFORMATIONSPARSEMASK_H_
 
 #include <itkCovariantVector.h>
 #include <itkHistogram.h>
